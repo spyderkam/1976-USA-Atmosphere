@@ -5,7 +5,7 @@ from scipy.optimize import curve_fit
 file = np.genfromtxt("U.S. Standard Atmosphere Air Properties - Imperial (BG) Units.txt", skip_header=2)
 
 h = file[:, 0]*0.3048             # converting ft to m
-T = (file[:, 1] + 459.67)*(5/9)     # converting F to K
+T = (file[:, 1] + 459.67)*(5/9)   # converting F to K
 
 
 def temp_curve(x, a, b, c, d, e): return a*x**4 + b*x**3 + c*x**2 + d*x + e
