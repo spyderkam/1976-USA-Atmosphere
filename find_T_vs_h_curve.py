@@ -13,7 +13,7 @@ def temp_curve(x, a, b, c, d, e): return a*x**4 + b*x**3 + c*x**2 + d*x + e
 
 plt.scatter(h, T, label='data', color='blue')
 popt, pcov = curve_fit(temp_curve, h, T)
-plt.plot(h, temp_curve(h, *popt), 'r--', label=r'fit: $ax^4 + bx^3 + cx^2 + dx + e$')
+plt.plot(h, temp_curve(h, *popt), 'r--', label=r'fit: $ah^4 + bh^3 + ch^2 + dh + e$')
 plt.legend()
 
 plt.ylabel(r"$T(h)$", fontsize=25)
