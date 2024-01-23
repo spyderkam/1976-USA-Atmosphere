@@ -11,7 +11,7 @@ Alright, so our Threat team is building some new software tools to do a new meth
 <null><br>
 *Stephen Arnsparger*:
 
-I am going to throw some skeleton code together for you to integrate with the rest of our code base, but for now playing around with some code to closely emulate the 1976 Standard Model would be excellent. The model itself should be able to have an altitude plugged in and pass out a temp, density, and pressure. The drag model should take in ECEF position and velocity as well as ballistic parameters to output an acceleration due to force vector. 
+I am going to throw some skeleton code together for you to integrate with the rest of our code base, but for now playing around with some code to closely emulate the 1976 Standard Model would be excellent. The model itself should be able to have an altitude plugged in and pass out a temperature, density, and pressure. The drag model should take in ECEF position and velocity as well as ballistic parameters to output an acceleration due to force vector. 
 
 Some things for you:
 -	Checkout: https://www.ngdc.noaa.gov/stp/space-weather/online-publications/miscellaneous/us-standard-atmosphere-1976/us-standard-atmosphere_st76-1562_noaa.pdf.
