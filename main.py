@@ -8,9 +8,9 @@ class Atmosphere:
     """1976 standard atmosphere model"""
 
     def __init__(self, h0=-1524, P0=101325, R=287.052874):
-        self.R = R           # specific gas constant for dry air (default units: [J/(kg*K)])
-        self.h0 = -1524      # geopotential altitude at sea level (boudary condition)
-        self.P0 = 101325     # pressure at sea level (boudary condition)
+        self.R = R       # specific gas constant for dry air (default units: [J/(kg*K)])
+        self.h0 = h0     # geopotential altitude at sea level (boudary condition)
+        self.P0 = P0     # pressure at sea level (boudary condition)
 
     def T(self, h):     # See "find_T_vs_h_curve.py" for how this math expresssion temp was obtained.
         return 0.000000000000000027*h**4 - 0.000000000006074933*h**3 + 0.000000422889669793*h**2 - 0.009918936624872612*h + 289.661267963331567898
