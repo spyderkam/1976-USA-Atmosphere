@@ -3,6 +3,7 @@ import numpy as np
 
 
 g = -9.81     # This varies for altitude but will be assumed constant here.
+
 class Atmosphere:
     """1976 standard atmosphere model"""
 
