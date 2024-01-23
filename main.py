@@ -20,12 +20,10 @@ class Atmosphere:
 
     def ρ(self, h):     # density
         return P(h)/(self.R*T(h))
+   
+    def drag_force(self, Cd, A, vh, vx, vy, h, x=0, y=0):     # Cd is drag coefficient and A is cross-sectional area
+        return 0.5*ρ(h)*np.square([vx, vy, vh])*Cd*A
 
-"""
-    def drag_force(self, v, c, A):     # v: velocity, c: drag coefficient, A: cross sectional area
-        ρ = self.P/(self.R*self.T)     # density of fluid
-        return 0.5*ρ*(v**2)*c*A
-"""
 
 
 if __name__ == '__main__':
@@ -37,4 +35,8 @@ if __name__ == '__main__':
     hmax = 76200
     h = hmax
 
-    print(f"For h = {h}, T = {T(h)}, P = {P(h)}, and ρ = {ρ(h)}.")
+    print(f"For h = {h}, T = {T(h)}, P = {P(h)}, and ρ = {ρ(h)}.\n")
+    
+    z = 10000; m = 100
+    Fd = atm_model.drag_force(Cd=1, A=100, vh=100, vx=100, vy=100, h=z)
+    print(f"The length of the drag force at altitude {z} is {np.linalg.norm(Fd)} and so with a mass of {m} its acceleration is {np.linalg.norm(Fd)/m}.")
