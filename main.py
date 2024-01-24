@@ -16,7 +16,7 @@ class Atmosphere:
         return 0.000000000000000027*h**4 - 0.000000000006074933*h**3 + 0.000000422889669793*h**2 - 0.009918936624872612*h + 289.661267963331567898
 
     def P(self, h):     # h is geopotential altitude
-        return np.exp( (g/self.R)*integrate.quad(lambda h: 1/T(h), self.h0, h)[0] + np.log(self.P0) )
+        return self.P0*np.exp( (g/self.R)*integrate.quad(lambda h: 1/T(h), self.h0, h)[0] )
 
     def ρ(self, h):     # density
         return P(h)/(self.R*T(h))
