@@ -33,10 +33,10 @@ if __name__ == '__main__':
     ρ = atm_model.ρ
 
     hmax = 76200
-    h = hmax
+    h = 10000
 
     print(f"For h = {h}, T = {T(h)}, P = {P(h)}, and ρ = {ρ(h)}.\n")
     
-    z = 10000; m = 100
-    Fd = atm_model.drag_force(Cd=1, A=100, vh=100, vx=100, vy=100, h=z)
-    print(f"The length of the drag force at altitude {z} is {np.linalg.norm(Fd)} and so with a mass of {m} its acceleration is {np.linalg.norm(Fd)/m}.")
+    z = h; m = 100
+    Fd = atm_model.drag_force(Cd=1, A=100, vh=20, vx=100, vy=3000, h=z)
+    print(f"The drag force at altitude {z} is {Fd} and so with a mass of {m} its acceleration is {np.linalg.norm(Fd)/m}.")
