@@ -1,5 +1,5 @@
 # 1976 USA Standard Atmosphere incorporating an instantaneous drag under certain conditions.
-
+<!---
 *Mathew David*:
 
 Alright, so our Threat team is building some new software tools to do a new method of threat data generation on SITR. This is going to be a full ground-up change from what we utilized on the old (DSC) contract but all of this data that this new tool will output is what we on the Analysis team use as inputs for our simulation of the GMD element. In short, Threat Team feeds us data they have generated, we put that in our models/sims.
@@ -18,3 +18,4 @@ Some things for you:
 -	Honestly the wiki is way more understandable than that paper: https://en.wikipedia.org/wiki/U.S._Standard_Atmosphere.
 -	Geopotential height is not the same thing as standard height, but when messing around on early implementations it isn’t a big deal to just approximate gravity since Kelly is working on our gravity model at the moment. 
 -	On the rough draft it isn’t really a problem, but when you actually throw your code into our library please use the Google Python standard. 
+--->
