@@ -10,6 +10,7 @@ T = (file[:, 1] + 459.67)*(5/9)   # converting F to K
 
 
 def temp_curve(x, a, b, c, d, e): return a*x**4 + b*x**3 + c*x**2 + d*x + e
+# Obviously such a polynomial is not good math but get the ball rolling.
 
 
 plt.scatter(h, T, label='data', color='blue')
