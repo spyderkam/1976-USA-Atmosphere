@@ -12,13 +12,13 @@ class Atmosphere:
         self.h0 = h0     # geopotential altitude at sea level (boudary condition)
         self.P0 = P0     # pressure at sea level (boudary condition)
 
-    def T(self, h):     # See "find_T_vs_h_curve.py" for how this math expresssion temp was obtained.
+    def T(self, h):      # See "find_T_vs_h_curve.py" for how this expresssion was obtained.
         return 0.000000000000000027*h**4 - 0.000000000006074933*h**3 + 0.000000422889669793*h**2 - 0.009918936624872612*h + 289.661267963331567898
 
-    def P(self, h):     # h is geopotential altitude
+    def P(self, h):      # h is geopotential altitude
         return self.P0*np.exp( (g/self.R)*integrate.quad(lambda h: 1/T(h), self.h0, h)[0] )
 
-    def ρ(self, h):     # density
+    def ρ(self, h):      # density
         return P(h)/(self.R*T(h))
    
     def drag_force(self, Cd, A, vh, vx, vy, h, x=0, y=0):     # Cd is drag coefficient and A is cross-sectional area
