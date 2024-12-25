@@ -122,7 +122,7 @@ Feel free to open issues or submit pull requests for:
 
 MIT License
 
-Copyright (c) 2024 [Kamyar Modjtahedzadeh]
+Copyright (c) 2024 Kamyar Modjtahedzadeh
 
 This code was developed to implement the 1976 U.S. Standard Atmosphere model.
 
