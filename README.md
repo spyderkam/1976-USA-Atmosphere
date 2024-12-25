@@ -1,21 +1,133 @@
-# 1976 USA Standard Atmosphere incorporating an instantaneous drag under certain conditions.
-<!---
-*Mathew David*:
+# 1976 U.S. Standard Atmosphere Model Implementation
 
-Alright, so our Threat team is building some new software tools to do a new method of threat data generation on SITR. This is going to be a full ground-up change from what we utilized on the old (DSC) contract but all of this data that this new tool will output is what we on the Analysis team use as inputs for our simulation of the GMD element. In short, Threat Team feeds us data they have generated, we put that in our models/sims.
+A Python implementation of the 1976 U.S. Standard Atmosphere model for calculating atmospheric properties (temperature, pressure, density) and drag forces at different altitudes.
 
-&nbsp;&nbsp;&nbsp;&nbsp;So the first thing they are building is a threat-object trajectory generation and kinematic propagation tool. So they are going to be needing some capabilities, that don't exist in their tool yet, to account for atmospheric considerations on a given threat-object model. So what the Threat team lead wants to shoot for is a 1976 US Standard Atmosphere along with a function to apply instantaneous drag under certain conditions. 
+## Overview
 
-&nbsp;&nbsp;&nbsp;&nbsp;At first, it may sound like a lot but i believe it should only be a python class that encompasses the atmosphere portion and a python function for the instantaneous drag that can be called to if specific criteria is hit. I have asked the lead to give me some skeleton code that you could baseline your work off of if you are still interested.
+This implementation:
+- Calculates temperature as a function of geopotential altitude using a fitted 4th-degree polynomial
+- Computes atmospheric pressure via numerical integration
+- Determines air density using the ideal gas law
+- Calculates drag forces on objects at various altitudes
+- Valid for altitudes between -1,524 m and 76,200 m
 
-<null><br>
-*Stephen Arnsparger*:
+## Features
 
-I am going to throw some skeleton code together for you to integrate with the rest of our code base, but for now playing around with some code to closely emulate the 1976 Standard Model would be excellent. The model itself should be able to have an altitude plugged in and pass out a temperature, density, and pressure. The drag model should take in ECEF position and velocity as well as ballistic parameters to output an acceleration due to force vector. 
+- Temperature calculation using fitted polynomial model
+- Pressure calculation using numerical integration
+- Density computation from ideal gas law
+- Drag force calculations
+- Supports Earth-Centered Earth-Fixed (ECEF) coordinates
+- Handles both linear and circular configurations
 
-Some things for you:
--	Checkout: https://www.ngdc.noaa.gov/stp/space-weather/online-publications/miscellaneous/us-standard-atmosphere-1976/us-standard-atmosphere_st76-1562_noaa.pdf.
--	Honestly the wiki is way more understandable than that paper: https://en.wikipedia.org/wiki/U.S._Standard_Atmosphere.
--	Geopotential height is not the same thing as standard height, but when messing around on early implementations it isn’t a big deal to just approximate gravity since Kelly is working on our gravity model at the moment. 
--	On the rough draft it isn’t really a problem, but when you actually throw your code into our library please use the Google Python standard. 
---->
+## Installation
+
+1. Clone this repository:
+```bash
+git clone [repository-url]
+```
+
+2. Required dependencies:
+```bash
+pip install numpy scipy matplotlib
+```
+
+## Usage
+
+### Basic Usage
+```python
+from main import Atmosphere
+
+# Create atmosphere model instance
+atm_model = Atmosphere()
+
+# Calculate properties at a given altitude (in meters)
+h = 10000
+temperature = atm_model.T(h)
+pressure = atm_model.P(h)
+density = atm_model.ρ(h)
+
+# Calculate drag force
+drag_force = atm_model.drag_force(
+    Cd=1,           # drag coefficient
+    A=100,          # cross-sectional area (m²)
+    vh=20,          # vertical velocity (m/s)
+    vx=100,         # x velocity (m/s)
+    vy=3000,        # y velocity (m/s)
+    h=10000         # altitude (m)
+)
+```
+
+## Model Details
+
+### Atmosphere Class
+The main class implementing the atmospheric model.
+
+#### Parameters
+- `h0` (float): Geopotential altitude at sea level (-1,524 m default)
+- `P0` (float): Pressure at sea level (101,325 Pa default)
+- `R` (float): Specific gas constant for dry air (287.052874 J/(kg*K) default)
+
+#### Methods
+- `T(h)`: Calculate temperature at given altitude
+- `P(h)`: Calculate pressure at given altitude
+- `ρ(h)`: Calculate density at given altitude
+- `drag_force(Cd, A, vh, vx, vy, h)`: Calculate drag force
+
+## Physical Model
+
+The implementation is based on three key equations:
+
+1. Vertical pressure variation:
+```
+dP/dh = -ρg
+```
+
+2. Ideal gas law:
+```
+P = ρRT
+```
+
+3. Drag force:
+```
+Fd = (1/2)ρv²CdA
+```
+
+Where:
+- P is pressure
+- ρ is density
+- g is gravitational acceleration (-9.81 m/s²)
+- R is the specific gas constant for dry air
+- T is temperature
+- v is velocity
+- Cd is drag coefficient
+- A is cross-sectional area
+
+## Limitations
+
+- Valid only for altitudes between -1,524 m and 76,200 m
+- Uses constant gravitational acceleration (g = -9.81 m/s²)
+- Temperature model uses polynomial fit which may not have physical meaning
+- Only considers dry air
+
+## Contributing
+
+Feel free to open issues or submit pull requests for:
+- Bug fixes
+- Documentation improvements
+- Model enhancements
+- Additional features
+
+## License
+
+MIT License
+
+Copyright (c) 2024 [Kamyar Modjtahedzadeh]
+
+This code was developed to implement the 1976 U.S. Standard Atmosphere model.
+
+## References
+
+1. U.S. Standard Atmosphere, 1976 (NOAA/NASA/USAF)
+2. The Engineering ToolBox - Standard Atmosphere properties
+3. Public Domain Aeronautical Software - Geopotential & Geometric Altitude
