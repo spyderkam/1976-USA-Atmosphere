@@ -18,7 +18,6 @@ This implementation:
 - Density computation from ideal gas law
 - Drag force calculations
 - Supports Earth-Centered Earth-Fixed (ECEF) coordinates
-- Handles both linear and circular configurations
 
 ## Installation
 
