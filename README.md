@@ -65,7 +65,7 @@ The main class implementing the atmospheric model.
 #### Parameters
 - `h0` (float): Geopotential altitude at sea level (-1,524 m default)
 - `P0` (float): Pressure at sea level (101,325 Pa default)
-- `R` (float): Specific gas constant for dry air (287.052874 J/(kg*K) default)
+- `R` (float): Specific gas constant for dry air (287.052874 J/(kg⋅K) default)
 
 #### Methods
 - `T(h)`: Calculate temperature at given altitude
