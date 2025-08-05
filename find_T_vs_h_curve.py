@@ -2,8 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-file = np.genfromtxt(
-    "U.S. Standard Atmosphere Air Properties - Imperial (BG) Units.txt", skip_header=2)
+file = np.genfromtxt("U.S. Standard Atmosphere Air Properties - Imperial (BG) Units.txt", skip_header=2)
 
 h = file[:, 0]*0.3048             # converting ft to m
 T = (file[:, 1] + 459.67)*(5/9)   # converting F to K
@@ -43,3 +42,4 @@ print('   e =', "%0.18f" % popt[4])
 CONCLUSTION: 
   if -1524 meter ≤ 𝘩 ≤ 76200 ⇒ 𝘛(𝘩) = 0.000000000000000027𝘩^4 - 0.000000000006074933𝘩^3 + 0.000000422889669793𝘩^2 - 0.009918936624872612𝘩 + 289.661267963331567898
 """
+
